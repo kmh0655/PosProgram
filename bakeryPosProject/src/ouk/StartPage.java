@@ -1,11 +1,15 @@
 package ouk;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,103 +18,85 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
-public class StartPage extends JFrame implements ActionListener {
+
+public class StartPage extends JFrame implements ActionListener  {
 
 	JTextField tfId, tfPw;
-	JButton signUp, logIn, cancle;
+	JButton signUpbtn, logInBtn, exitBtn;
+	ImageIcon managerLoginIcon, logInNomalIcon, logInClickedIcon, exitIcon, exitClickedIcon;
+	EmptyBorder b1 = new EmptyBorder(5,3,5,3);
 
 	public StartPage() {
-
-		// StartPage Ã¢ »ý¼º
+		
+		// StartPage
 		setTitle("bakery pos");
-		setSize(830, 500);
+		setSize(616, 489);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setLayout(new BorderLayout());
-
-		// west ±¸Çö
-		JPanel west = new JPanel();
-		west.setLayout(new FlowLayout());
-
-		ImageIcon image = new ImageIcon("images/StartPageImage.jpg");
-		JLabel bakeryImage = new JLabel(image);
-		west.add(bakeryImage, BorderLayout.CENTER);
-
-		// east ±¸Çö
-		JPanel east = new JPanel();
-		east.setLayout(new BorderLayout());
-
-		JPanel east1 = new JPanel();
-		east1.setLayout(new FlowLayout());
-		JLabel jl1 = new JLabel("°ü¸®ÀÚ ·Î±×ÀÎ");
-		east1.add(jl1);
-
-		JPanel east2 = new JPanel();
-		east2.setLayout(new BorderLayout());
-
-		JPanel east2_1 = new JPanel();
-		east2_1.setLayout(new FlowLayout());
-		JLabel id = new JLabel(" I D : ");
+		
+		
+		
+		managerLoginIcon = new ImageIcon("images/managerLoginPage.jpg");
+		logInNomalIcon = new ImageIcon("images/logInbtnNomal.jpg");
+		logInClickedIcon = new ImageIcon("images/logInbtnClicked.jpg");
+		exitIcon = new ImageIcon("images/exitbtn.jpg");
+		exitClickedIcon = new ImageIcon("images/exitClicked.jpg");
+		
+		
+		
+		JPanel jp = new JPanel() {
+			public void paintComponent(Graphics g) {
+				g.drawImage(managerLoginIcon.getImage(), 0, 0,null);
+				setOpaque(false);
+				super.paintComponent(g);
+			}
+		};
+		add(jp);
+		
+		jp.setLayout(null);
+		
 		tfId = new JTextField(10);
-		east2_1.add(id);
-		east2_1.add(tfId);
-		east2.add(east2_1);
-		
-		JLabel pw = new JLabel("PW : ");
-		tfPw = new JTextField(10);
-
-		east2_1.add(pw);
-		east2_1.add(tfPw);
-		
-		logIn = new JButton("·Î±×ÀÎ");
-		logIn.addActionListener(this);
-		cancle = new JButton("Ãë¼Ò");
-		east2_1.add(logIn);
-		east2_1.add(cancle);
-
-		/*JPanel east2_2 = new JPanel();
-		east2_2.setLayout(new FlowLayout());
-		JLabel pw = new JLabel("PW : ");
-		tfPw = new JTextField(10);
-
-		east2_2.add(pw);
-		east2_2.add(tfPw);*/
-		
 	
-
-		/*JPanel east2_3 = new JPanel();
-		east2_3.setLayout(new FlowLayout());
-		logIn = new JButton("·Î±×ÀÎ");
-		cancle = new JButton("Ãë¼Ò");
-		east2_3.add(logIn);
-		east2_3.add(cancle);*/
-
-		east2.add(east2_1, BorderLayout.CENTER);
+		tfId.setBounds(285, 192, 130, 30);
 		
-		//east2.add(east2_2, BorderLayout.CENTER);
-		//east2.add(east2_3, BorderLayout.SOUTH);
+		tfPw = new JTextField(10);
+		tfPw.setBounds(285, 222, 130, 30);
 		
-
-		JPanel east3 = new JPanel();
-		east3.setLayout(new FlowLayout());
-		signUp = new JButton("°ü¸®ÀÚ µî·Ï");
-		signUp.addActionListener(this);
-		east3.add(signUp);
-		east2.add(east3, BorderLayout.SOUTH);
 		
-
-		east.add(east1, BorderLayout.NORTH);
-		east.add(east2, BorderLayout.CENTER);
-		//east.add(east3,BorderLayout.SOUTH);
-
-		// ÀüÃ¼ ±¸Çö
-		add(west, BorderLayout.WEST);
-		add(east, BorderLayout.CENTER);
-
+		
+		logInBtn = new JButton();
+		logInBtn.setIcon(logInNomalIcon);
+		logInBtn.setPressedIcon(logInClickedIcon);
+		logInBtn.addActionListener(this);
+		logInBtn.setBorder(b1);
+		logInBtn.setOpaque(false);
+		logInBtn.setBounds(267, 262, 74, 28);
+		
+		exitBtn = new JButton();
+		exitBtn.setIcon(exitIcon);
+		exitBtn.setPressedIcon(exitClickedIcon);
+		exitBtn.addActionListener(this);
+		exitBtn.setBorder(b1);
+		exitBtn.setOpaque(false);
+		exitBtn.setBackground( new Color(0, 0, 0, 200));
+		exitBtn.setBounds(284, 362, 32, 32);
+		
+		//í”„ë ˆìž„ êµ¬ì„±;
+		
+		
+		jp.add(logInBtn);
+		jp.add(exitBtn);
+		jp.add(tfId);
+		jp.add(tfPw);
+		
+		
 		setVisible(true);
 	}
+	
 
 	public static void main(String[] args) {
 		new StartPage();
@@ -118,14 +104,14 @@ public class StartPage extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 		Object obj = e.getSource();
-		if (obj == signUp) {
-			new SignUpPage();
-		} else if(obj == logIn) {
+		if(obj == logInBtn) {
 			new MainPage();
+		}else if(obj == exitBtn) {
+			System.exit(0);
 		}
-
 	}
+
+	
 
 }

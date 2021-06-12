@@ -1,81 +1,100 @@
 package ouk;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 
-public class SignUpPage extends JFrame {
+public class SignUpPage extends JFrame implements ActionListener {
 	
 	JLabel lbl1, lbl2, lbl3, lbl4, lbl5, lbl6, lbl7;
-	JTextField tf1, tf2, tf3, tf4, tf5, tf6;
+	JTextField tf1, tf2, tf3, tf4, tf5, tf6, tf7, tf8;
+	EmptyBorder b1 = new EmptyBorder(5,3,5,3);
 	JButton jb1, jb2;
-	
+	ImageIcon icon;
 	public SignUpPage() {
-	//StartPage 창 생성
+	//StartPage
 			setTitle("Manager SingUp");
-			setSize(300, 350);
+			setSize(416, 539);
 			setLocationRelativeTo(this);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setLayout(new BorderLayout());
 			
-			//north 구현
-			JPanel north = new JPanel();
-			north.setLayout(new FlowLayout());
-			lbl1 = new JLabel("관리자 등록");
-			north.add(lbl1);
+			icon = new ImageIcon("images/signUp.jpg");
 			
-			//center 구현
-			JPanel center = new JPanel();
-			center.setLayout(new GridLayout(6,2,0,10));
-			lbl2 = new JLabel("ID");
-			lbl3 = new JLabel("PW");
-			lbl4 = new JLabel("이름");
-			lbl5 = new JLabel("전화번호");
-			lbl6 = new JLabel("생년월일");
-			lbl7 = new JLabel("사업자 등록 번호");
-			tf1 = new JTextField(10);
-			tf2 = new JTextField(10);
-			tf3 = new JTextField(10);
-			tf4 = new JTextField(10);
-			tf5 = new JTextField(10);
-			tf6 = new JTextField(10);
+			JPanel jp = new JPanel() {
+				public void paintComponent(Graphics g) {
+					g.drawImage(icon.getImage(), 0, 0,null);
+					setOpaque(false);
+					super.paintComponent(g);
+				}
+			};
+			jp.setLayout(null);
+			add(jp);
 			
-			center.add(lbl2);
-			center.add(tf1);
-			center.add(lbl3);
-			center.add(tf2);
-			center.add(lbl4);
-			center.add(tf3);
-			center.add(lbl5);
-			center.add(tf4);
-			center.add(lbl6);
-			center.add(tf5);
-			center.add(lbl7);
-			center.add(tf6);
+			tf1= new JTextField();
+			tf1.setBounds(176, 153, 130, 25);
+			jp.add(tf1);
 			
-			//south 구현
-			JPanel south = new JPanel();
-			south.setLayout(new FlowLayout());
-			jb1 = new JButton("입력 완료");
-			jb2 = new JButton("취소");
-			south.add(jb1);
-			south.add(jb2);
+			tf2= new JTextField();
+			tf2.setBounds(176, 183, 130, 25);
+			jp.add(tf2);
 			
+			tf3= new JTextField();
+			tf3.setBounds(176, 218, 130, 25);
+			jp.add(tf3);
 			
+			tf4= new JTextField();
+			tf4.setBounds(176, 248, 130, 25);
+			jp.add(tf4);
 			
-			//전체 구현
-			add(north, BorderLayout.NORTH);
-			add(center, BorderLayout.CENTER);
-			add(south, BorderLayout.SOUTH);
+			tf5= new JTextField();
+			tf5.setBounds(176, 280, 130, 25);
+			jp.add(tf5);
+			
+			tf6= new JTextField();
+			tf6.setBounds(176, 310, 130, 25);
+			jp.add(tf6);
+			
+			tf7= new JTextField();
+			tf7.setBounds(176, 340, 130, 25);
+			jp.add(tf7);
+			
+			jb1 = new JButton();
+			jb1.addActionListener(this);
+			jb1.setBounds(164, 377, 74, 27);
+			jp.add(jb1);
+			jb1.setBorder(b1);
+			jb1.setOpaque(false);
+			jb1.setBackground( new Color(0, 0, 0, 200));
+			jb1.setBounds(219, 270, 74, 28);
 			
 			setVisible(true);
 			}
+
+	public static void main(String[] args) {
+		new SignUpPage();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object obj = e.getSource();
+		if(obj == jb1) {
+			
+		}
+		
+	}
 }
